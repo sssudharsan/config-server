@@ -23,7 +23,14 @@ public class PatientController {
 	
 	@PostMapping(path="/addPatient",consumes=MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> addPatient(@RequestBody String patient){
+	public ResponseEntity<?> addPatient(@RequestBody Patient patient){
+		patient = patientService.addPatient(patient);
+		return new ResponseEntity<String>("Patient created successfully",HttpStatus.OK);
+	}
+	
+	@PostMapping(path="/addDoctor",consumes=MediaType.APPLICATION_JSON_VALUE,
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> addDoctor(@RequestBody String patient){
 		ResponseEntity<String> bodyData = pateintproxy.addPatient(patient);
 		return new ResponseEntity<String>(bodyData.toString(),HttpStatus.OK);
 	}
