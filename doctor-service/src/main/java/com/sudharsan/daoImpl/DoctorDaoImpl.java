@@ -18,7 +18,6 @@ public class DoctorDaoImpl implements DoctorDao {
 	private SessionFactory sessionFactory;
 
 	@Override
-	@Transactional
 	public Doctor addDoctor(Doctor doctor) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().save(doctor);
@@ -26,14 +25,12 @@ public class DoctorDaoImpl implements DoctorDao {
 	}
 
 	@Override
-	@Transactional
 	public List<Doctor> getAllDoctor() {
 		// TODO Auto-generated method stub
 		return (List<Doctor>) sessionFactory.getCurrentSession().createCriteria(Doctor.class).list();
 	}
 
 	@Override
-	@Transactional
 	public Doctor getDoctor(int id) {
 		// TODO Auto-generated method stub
 		return (Doctor) sessionFactory.getCurrentSession().get(Doctor.class, id);
