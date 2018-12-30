@@ -20,20 +20,20 @@ public class DoctorDaoImpl implements DoctorDao {
 	@Override
 	public Doctor addDoctor(Doctor doctor) {
 		// TODO Auto-generated method stub
-		sessionFactory.getCurrentSession().save(doctor);
+		sessionFactory.openSession().save(doctor);
 		return doctor;
 	}
 
 	@Override
 	public List<Doctor> getAllDoctor() {
 		// TODO Auto-generated method stub
-		return (List<Doctor>) sessionFactory.getCurrentSession().createCriteria(Doctor.class).list();
+		return (List<Doctor>) sessionFactory.openSession().createCriteria(Doctor.class).list();
 	}
 
 	@Override
 	public Doctor getDoctor(int id) {
 		// TODO Auto-generated method stub
-		return (Doctor) sessionFactory.getCurrentSession().get(Doctor.class, id);
+		return (Doctor) sessionFactory.openSession().get(Doctor.class, id);
 	}
 
 }
