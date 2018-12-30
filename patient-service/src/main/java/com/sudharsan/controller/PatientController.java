@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sudharsan.domain.Patient;
 import com.sudharsan.service.PatientService;
+import com.sudharsan.serviceImpl.PatientProxyInterface;
 
 @RestController
 public class PatientController {
@@ -17,11 +18,14 @@ public class PatientController {
 	@Autowired
 	PatientService patientService;
 	
+	@Autowired
+	private PatientProxyInterface pateintproxy;
+	
 	@PostMapping(path="/addPatient",consumes=MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> addPatient(@RequestBody Patient patient){
-		patient = patientService.addPatient(patient);
-		return new ResponseEntity<>(String.format("Patient Created Successfully"),HttpStatus.CREATED);
+	public ResponseEntity<String> addPatient(@RequestBody String patient){
+		ResponseEntity<String> bodyData = pateintproxy.addPatient(patient);
+		return new ResponseEntity<String>(bodyData.toString(),HttpStatus.OK);
 	}
 
 }
