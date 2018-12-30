@@ -7,10 +7,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
-@FeignClient(name="patient-proxy",url="http://localhost:8080/doctor")
+//@FeignClient(name="patient-proxy",url="http://localhost:8080/doctor")
+@FeignClient(name="patient-service")
 public interface PatientProxyInterface {
 	
-	@PostMapping(path="/createDoctor",consumes=MediaType.APPLICATION_JSON_VALUE,
+	@PostMapping(path="/doctor/createDoctor",consumes=MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> addPatient(@RequestBody String patient);
 		
