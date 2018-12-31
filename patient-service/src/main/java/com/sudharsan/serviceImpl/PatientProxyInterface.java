@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 
 //@FeignClient(name="patient-proxy",url="http://localhost:8080/doctor")
-@FeignClient(name="patient-service")
+@FeignClient(name="zuul-api-gateway")
 public interface PatientProxyInterface {
 	
-	@PostMapping(path="/doctor/createDoctor",consumes=MediaType.APPLICATION_JSON_VALUE,
+	@PostMapping(path="/api/doctor-service/doctor/createDoctor",consumes=MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> addPatient(@RequestBody String patient);
 		
